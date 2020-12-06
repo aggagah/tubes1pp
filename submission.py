@@ -112,6 +112,33 @@ def delete_submission(dict_submission, list_topic, dict_activity, nim):
     Hapus assignment tersebut.
     '''
     print('----Fungsi "delete_submission" dijalankan----')
+    number = 1
+    listNomor = []
+    for i in list_topic:
+        print(f"{number}: {i['Title']}")
+        listNomor.append(number)
+        number += 1
+    nomorTopic = int(input("Masukkan nomor topic: "))
+
+    listNim = []
+    if nomorTopic in listNomor:
+        print("Berikut adalah list assignment : ")
+        print("ID\t| Title\t\t\t\t\t| Type\t\t\t| Description")
+        print("-"*85)
+        for id_activity in dict_activity:
+            if dict_activity[id_activity]['Type'] == 'assignment' and nim in dict_submission[id_activity]:
+                listNim.append(id_activity)
+        if listNim:
+            for id_activity in list_topic[nomorTopic-1]['Activities']:
+                if dict_activity[id_activity]['Type'] == 'assignment' and nim in dict_submission[id_activity]:
+                    print(
+                        f"{id_activity}\t| {dict_activity[id_activity]['Title']}\t\t\t| {dict_activity[id_activity]['Type']}\t\t| {dict_activity[id_activity]['Description']}")
+            idAssignment = int(input("Masukkan ID assignment: "))
+        if idAssignment in dict_submission:
+            dict_submission[idAssignment].pop(nim)
+            print("Delete berhasil!")
+
+    input("\n\nTekan Enter untuk kembali ke menu utama...")
 
 
 def print_submissions_to_file(dict_submission, dict_activity):
