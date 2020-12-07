@@ -4,6 +4,30 @@ def show_topic(list_topic, dict_activity):
     '''
     print('----Fungsi "show_topic" dijalankan----')
     # jawaban anda di bawah ini
+    for i in list_topic:
+        print(f"Title\t: {i['Title']}")
+        print(f"Description: {i['Description']}")
+        print("List activity:")
+        print("ID\t| Title\t\t\t| Type\t\t| Description")
+        print(
+            "----------------------------------------------------------------------")
+        for j in i['Activities']:
+            if len(dict_activity[j]['Title']) > 14:
+                if len(dict_activity[j]['Type']) < 10:
+                    print(
+                        f"{j}\t| {dict_activity[j]['Title']}\t| {dict_activity[j]['Type']}\t\t| {dict_activity[j]['Description']}")
+                elif len(dict_activity[j]['Type']) >= 10:
+                    print(
+                        f"{j}\t| {dict_activity[j]['Title']}\t| {dict_activity[j]['Type']}\t| {dict_activity[j]['Description']}")
+            elif len(dict_activity[j]['Title']) <= 14:
+                if len(dict_activity[j]['Type']) < 10:
+                    print(
+                        f"{j}\t| {dict_activity[j]['Title']}\t| {dict_activity[j]['Type']}\t| {dict_activity[j]['Description']}")
+                elif len(dict_activity[j]['Type']) >= 10:
+                    print(
+                        f"{j}\t| {dict_activity[j]['Title']}\t\t| {dict_activity[j]['Type']}\t| {dict_activity[j]['Description']}")
+        print("\n")
+    input("\n\nTekan Enter untuk kembali ke menu utama...")
 
 
 def add_topic(list_topic, dict_activity, id_activity):
